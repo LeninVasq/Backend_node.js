@@ -1,12 +1,14 @@
-import express from 'express';
+import express from 'express'
+import tipoUsuarioRoutes from './Routes/tipoUsuario.routes.js'
 
-const app = express();
+const app = express()
 
-app.get('/',(req, res) =>{
+app.use(express.json())
 
-    res.send("Funciona la peticion 3000")
+//rutas
+app.use('/api/tipo_usuario', tipoUsuarioRoutes)
+
+const PORT = 3000
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`)
 })
-
-app.listen(3000,()=>{
-    console.log("el servidor se ejecuta en el puerto 3000")
-});
