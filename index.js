@@ -7,6 +7,7 @@ import usuario from './Routes/usuario.routes.js'
 import turno from './Routes/turno.routes.js'
 import tipoHabitacion from './Routes/tipoHabitacion.routes.js'
 import tipoServicio from './Routes/tipoServicio.routes.js'
+import tipoMantenimiento from './Routes/tipoMantenimiento.routes.js'
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use('/api/usuario', usuario)
 app.use('/api/turno', turno)
 app.use('/api/tipoHabitacion', tipoHabitacion)
 app.use('/api/tipoServicio', tipoServicio)
+app.use('/api/tipoMantenimiento', tipoMantenimiento)
 
 app.listen(SERVER_PORT, () => {
   console.log(`Servidor corriendo en ${API_BASE_URL}`)
