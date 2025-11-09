@@ -9,12 +9,14 @@ import tipoHabitacion from './Routes/tipoHabitacion.routes.js'
 import tipoServicio from './Routes/tipoServicio.routes.js'
 import tipoMantenimiento from './Routes/tipoMantenimiento.routes.js'
 import servicio from './Routes/servicio.routes.js'
+import habitacion from './Routes/habitacion.routes.js'
 
 const app = express()
 
 app.use(express.json())
 
 //rutas
+app.use('/api/habitacion', habitacion)
 app.use('/api/tipo_usuario', tipoUsuarioRoutes)
 app.use('/api/usuario', usuario)
 app.use('/api/turno', turno)
