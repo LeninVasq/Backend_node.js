@@ -9,10 +9,10 @@ import {
 
 const router = express.Router()
 
-router.get('/', getTipoMantenimientos) // Obtener todos
-router.get('/:id', getTipoMantenimientoById) // Obtener por ID
-router.post('/', createTipoMantenimiento) // Crear nuevo
-router.put('/:id', updateTipoMantenimiento) // Actualizar
-router.delete('/:id', deleteTipoMantenimiento) // Eliminar
+router.get('/', getTipoMantenimientos) 
+router.get('/:id', getTipoMantenimientoById) 
+router.post('/', createTipoMantenimiento) 
+router.put('/:id', updateTipoMantenimiento) 
+router.delete('/:id', deleteTipoMantenimiento) 
 
 export default router
