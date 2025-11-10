@@ -18,12 +18,15 @@ import mantenimiento from './Routes/mantenimiento.routes.js'
 import factura from './Routes/factura.routes.js'
 import reservaServicios from './Routes/reservaServicios.routes.js'
 import detalleFactura from './Routes/detalleFactura.routes.js'
-
+import checkinRoutes from './Routes/checkin.routes.js'
+import checkoutRoutes from './Routes/checkout.routes.js'
 const app = express()
 
 app.use(express.json())
 
 //rutas
+app.use('/api/checkin', checkinRoutes)
+app.use('/api/checkout', checkoutRoutes)
 app.use('/api/reserva_servicios', reservaServicios)
 app.use('/api/detalle_factura', detalleFactura)
 app.use('/api/factura', factura)
