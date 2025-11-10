@@ -16,12 +16,16 @@ import personal from './Routes/personal.routes.js'
 import metodoPago from './Routes/metodoPago.routes.js'
 import mantenimiento from './Routes/mantenimiento.routes.js'
 import factura from './Routes/factura.routes.js'
+import reservaServicios from './Routes/reservaServicios.routes.js'
+import detalleFactura from './Routes/detalleFactura.routes.js'
 
 const app = express()
 
 app.use(express.json())
 
 //rutas
+app.use('/api/reserva_servicios', reservaServicios)
+app.use('/api/detalle_factura', detalleFactura)
 app.use('/api/factura', factura)
 app.use('/api/mantenimiento', mantenimiento)
 app.use('/api/metodoPago', metodoPago)
