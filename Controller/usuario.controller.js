@@ -1,5 +1,33 @@
 import db from '../db.js'
 
+
+// Buscar usuario por correo y contraseña (login)
+export const loginUsuario = (req, res) => {
+  const { correo, contrasena } = req.body
+
+  // Validar que ambos campos lleguen
+  if (!correo || !contrasena) {
+    return res.status(400).json({ error: "Se requieren correo y contraseña" })
+  }
+
+  // Consulta SQL
+  const sql = "SELECT * FROM Usuario WHERE correo = ? AND contrasena = ?"
+
+  db.query(sql, [correo, contrasena], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message })
+
+    if (rows.length === 0) {
+      return res.status(401).json({ message: "Credenciales incorrectas" })
+    }
+
+    // En un sistema real deberías usar tokens o sesiones, pero esto es un ejemplo básico
+    res.json({
+      message: "Inicio de sesión exitoso",
+      usuario: rows[0]
+    })
+  })
+}
+
 // Obtener todos los usuarios
 export const getUsuarios = (req, res) => {
   db.query("SELECT * FROM Usuario", (err, rows) => {

@@ -1,5 +1,6 @@
 import express from 'express'
 import { API_BASE_URL,SERVER_PORT } from './config/config.js'
+import cors from 'cors'
 
 //importacion de rutas
 import tipoUsuarioRoutes from './Routes/tipoUsuario.routes.js'
@@ -23,6 +24,7 @@ import checkoutRoutes from './Routes/checkout.routes.js'
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 //rutas
 app.use('/api/checkin', checkinRoutes)

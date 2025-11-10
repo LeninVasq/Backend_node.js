@@ -4,11 +4,12 @@ import {
   getUsuarioById,
   createUsuario,
   updateUsuario,
-  deleteUsuario
+  deleteUsuario,loginUsuario
 } from '../Controller/usuario.controller.js'
 
 const router = Router()
 
+router.post('/login', loginUsuario)
 router.get('/', getUsuarios)
 router.get('/:id', getUsuarioById)
 router.post('/', createUsuario)
