@@ -15,12 +15,14 @@ import roles_personales from './Routes/rolesPersonales.routes.js'
 import personal from './Routes/personal.routes.js'
 import metodoPago from './Routes/metodoPago.routes.js'
 import mantenimiento from './Routes/mantenimiento.routes.js'
+import factura from './Routes/factura.routes.js'
 
 const app = express()
 
 app.use(express.json())
 
 //rutas
+app.use('/api/factura', factura)
 app.use('/api/mantenimiento', mantenimiento)
 app.use('/api/metodoPago', metodoPago)
 app.use('/api/personal', personal)
