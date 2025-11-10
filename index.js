@@ -12,12 +12,14 @@ import servicio from './Routes/servicio.routes.js'
 import habitacion from './Routes/habitacion.routes.js'
 import reserva from './Routes/reserva.routes.js'
 import roles_personales from './Routes/rolesPersonales.routes.js'
+import personal from './Routes/personal.routes.js'
 
 const app = express()
 
 app.use(express.json())
 
 //rutas
+app.use('/api/personal', personal)
 app.use('/api/roles_personales', roles_personales)
 app.use('/api/reserva', reserva)
 app.use('/api/habitacion', habitacion)
