@@ -19,8 +19,6 @@ export const loginUsuario = (req, res) => {
     if (rows.length === 0) {
       return res.status(401).json({ message: "Credenciales incorrectas" })
     }
-
-    // En un sistema real deberías usar tokens o sesiones, pero esto es un ejemplo básico
     res.json({
       message: "Inicio de sesión exitoso",
       usuario: rows[0]
