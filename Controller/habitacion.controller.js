@@ -27,6 +27,32 @@ export const getHabitaciones = (req, res) => {
   });
 };
 
+export const getHabitacionesDisponibles = (req, res) => {
+  const sql = `
+    SELECT 
+      h.id_habitacion,
+      h.numero_habitacion,
+      h.descripcion AS descripcion_habitacion,
+      h.telefono,
+      h.estado,
+      h.id_tipo_habitacion,
+      t.nombre_tipo AS nombre_tipo,
+      t.descripcion AS descripcion_tipo,
+      t.capacidad,
+      t.precio_base
+    FROM habitacion h
+    INNER JOIN tipo_habitacion t
+      ON h.id_tipo_habitacion = t.id_tipo_habitacion
+    WHERE h.estado != 3
+  `;
+
+  db.query(sql, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+};
 
 // Obtener habitación por ID
 export const getHabitacionById = (req, res) => {
