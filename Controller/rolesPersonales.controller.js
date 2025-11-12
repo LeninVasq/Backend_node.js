@@ -2,11 +2,23 @@ import db from '../db.js'
 
 // Obtener todos los roles
 export const getRolesPersonales = (req, res) => {
-  db.query("SELECT * FROM roles_personales", (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message })
-    res.json(rows)
-  })
+  const sql = `
+    SELECT 
+      rp.*,
+      t.hora_inicio,
+      t.hora_fin,
+      t.dia_semanas,
+      t.tipo_turno
+    FROM roles_personales rp
+    JOIN turno t
+      ON rp.id_turno = t.id_turno
+  `;
+  db.query(sql, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 }
+
 
 // Obtener rol por ID
 export const getRolPersonalById = (req, res) => {

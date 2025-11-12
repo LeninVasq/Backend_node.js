@@ -2,11 +2,34 @@ import db from '../db.js'
 
 // Obtener todo el personal
 export const getPersonal = (req, res) => {
-  db.query("SELECT * FROM personal", (err, rows) => {
+  const sql = `
+    SELECT 
+      p.id_personal,
+      p.nombre AS nombre_personal,
+      p.telefono,
+      p.carnet,
+      r.nombre AS nombre_rol,
+      t.tipo_turno,
+      t.hora_inicio,
+      t.hora_fin,
+      p.id_rol,
+      t.dia_semanas,
+      p.usuario_id,
+      u.correo AS correo_usuario,
+      p.estado
+    FROM personal p
+    LEFT JOIN roles_personales r ON p.id_rol = r.id_rol
+    LEFT JOIN turno t ON r.id_turno = t.id_turno
+    LEFT JOIN Usuario u ON p.usuario_id = u.id_usuario
+  `
+
+  db.query(sql, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message })
     res.json(rows)
   })
 }
+
+
 
 // Obtener personal por ID
 export const getPersonalById = (req, res) => {

@@ -2,10 +2,22 @@ import db from '../db.js'
 
 // Obtener todos los servicios
 export const getServicios = (req, res) => {
-  db.query("SELECT * FROM servicio", (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message })
-    res.json(rows)
-  })
+  const sql = `
+    SELECT 
+      s.id_servicio,
+      s.nombre,
+      s.descripcion,
+      s.costo,
+      s.estado,
+      ts.nombre_tipo_servicio AS tipo_servicio_nombre
+    FROM servicio s
+    JOIN tipo_servicio ts
+      ON s.id_tipo_servicio = ts.id_tipo_servicio
+  `;
+  db.query(sql, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 }
 
 // Obtener servicio por ID
